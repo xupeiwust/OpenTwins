@@ -1,76 +1,127 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Link from '@docusaurus/Link';
+import '../../css/home.css';
 
-export default function CustomNavbar(): JSX.Element {
+const IMAGES = [
+    '/img/demo/demo1.jpeg',
+    '/img/demo/demo2.jpeg',
+    '/img/demo/demo3.png',
+    '/img/demo/demo4.jpeg'
+];
+
+export default function MainPart(): JSX.Element {
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImageIndex((prevIndex) => 
+                prevIndex === IMAGES.length - 1 ? 0 : prevIndex + 1
+            );
+        }, 4000);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
-        <div style={{ width: '100%', margin: 0, padding: 0 }}>
-            <div className="row" style={{ width: '100%', margin: 0, padding: 0 }}>
-                <div className='col col--5' style={{ width: '100%', margin: 0, height: '100vh', paddingLeft: 0, display: 'flex', alignItems: 'center' }}>
-                    <ThemedImage
-                        className='round-border'
-                        alt="Docusaurus themed image"
-                        style={{ height: '80%', width: '100%', objectFit: 'cover', objectPosition: 'right' }}
-                        sources={{
-                            light: useBaseUrl('/img/captura-dark.png'),
-                            dark: useBaseUrl('/img/captura-light.png'),
-                        }}
-                    />
-                </div>
-                <div className='col col--7' style={{ width: '100%', margin: 0, height: '100vh' }}>
-                    <div style={{ height: '100%', margin: 'auto', display: 'grid', alignContent: 'center' }}>
-                        <div className="wrapper">
-                            <div className="typing-demo">
-                                <span className='mainTitle'>opentwins</span>
-                            </div>
-                        </div>
-                        <p className='text--center margin-top--lg padding-horiz--xl' style={{ fontWeight: 'normal', fontFamily: 'RobotoMono' }}>
-                            Innovative <u>open-source</u> platform that specializes in <br /> developing next-gen compositional <u>digital twins</u>
-                        </p>
+        <header className="hero-section">
+            <div className="hero-container">
+                
+                {/* --- LEFT COLUMN: Brand & Info --- */}
+                <div className="hero-left">
+                    <h1 className="brand-title-huge">
+                        <span className="text-open">Open</span>
+                        <span className="text-twins">Twins</span>
+                    </h1>
 
-                        <div className='center-content margin-top--lg margin-bottom--md'>
-                            <Link
-                                className="button button--primary button--lg"
-                                to="/docs/quickstart">
-                                Get started
-                            </Link>
-                            <Link
-                                className="button button--secondary button--lg margin-left--md"
-                                to="https://github.com/ertis-research/opentwins">
-                                GitHub
-                            </Link>
-                        </div>
+                    <p className="hero-description">
+                        Innovative <b>open-source</b> platform that specializes in developing next-gen <b>composite</b> digital twins
+                    </p>
 
-                        <div className='center-content margin-top--lg' style={{ height: '40px' }}>
-                            <ThemedImage
-                                alt="ertis logo"
-                                sources={{
-                                    light: useBaseUrl('/img/ertis_black.svg'),
-                                    dark: useBaseUrl('/img/ertis_white.svg'),
-                                }}
-                            />
-                            <ThemedImage
-                                alt="itis logo"
-                                className='margin-left--md'
-                                sources={{
-                                    light: useBaseUrl('/img/ITIS_black.svg'),
-                                    dark: useBaseUrl('/img/ITIS_white.svg'),
-                                }}
-                            />
-                            <ThemedImage
-                                alt="uma logo"
-                                className='margin-left--md'
-                                sources={{
-                                    light: useBaseUrl('/img/uma_black.png'),
-                                    dark: useBaseUrl('/img/uma_white.png'),
-                                }}
-                            />
-                        </div>
+                    <div className="cta-group">
+                        <Link
+                            className="button button--primary button--lg"
+                            to="/docs/quickstart">
+                            Get Started
+                        </Link>
+                        
+                        <Link
+                            className="button button--secondary button--lg"
+                            to="https://opentwins.ertis.uma.es">
+                            Demo
+                        </Link>
 
+                        <Link
+                            className="button button--secondary button--lg"
+                            to="https://github.com/ertis-research/opentwins">
+                            GitHub
+                        </Link>
+                    </div>
+
+                    <div className="partners-section">
+                        <span className="partners-label">An initiative of</span>
+                        <div className="partners-logos">
+                            <a href="https://ertis.uma.es" target="_blank" rel="noopener noreferrer" className="partner-link">
+                                <ThemedImage
+                                    alt="ERTIS"
+                                    className="partner-logo"
+                                    sources={{
+                                        light: useBaseUrl('/img/ertis_black.svg'),
+                                        dark: useBaseUrl('/img/ertis_white.svg'),
+                                    }}
+                                />
+                            </a>
+                            <a href="https://www.itis.uma.es" target="_blank" rel="noopener noreferrer" className="partner-link">
+                                <ThemedImage
+                                    alt="ITIS"
+                                    className="partner-logo"
+                                    sources={{
+                                        light: useBaseUrl('/img/ITIS_black.svg'),
+                                        dark: useBaseUrl('/img/ITIS_white.svg'),
+                                    }}
+                                />
+                            </a>
+                            <a href="https://www.uma.es" target="_blank" rel="noopener noreferrer" className="partner-link">
+                                <ThemedImage
+                                    alt="UMA"
+                                    className="partner-logo"
+                                    sources={{
+                                        light: useBaseUrl('/img/uma_black.png'),
+                                        dark: useBaseUrl('/img/uma_white.png'),
+                                    }}
+                                />
+                            </a>
+                        </div>
                     </div>
                 </div>
+
+                {/* --- RIGHT COLUMN: Carousel Window --- */}
+                <div className="hero-right">
+                    <div className="carousel-frame">
+                        <div className="carousel-header">
+                            <div className="dot red"></div>
+                            <div className="dot yellow"></div>
+                            <div className="dot green"></div>
+                        </div>
+                        
+                        <div className="carousel-content">
+                            {IMAGES.map((src, index) => (
+                                <img
+                                    key={src}
+                                    src={useBaseUrl(src)}
+                                    alt={`OpenTwins Interface Demo ${index + 1}`}
+                                    className="carousel-image"
+                                    style={{
+                                        opacity: index === currentImageIndex ? 1 : 0,
+                                        zIndex: index === currentImageIndex ? 2 : 1
+                                    }}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </div>
+        </header>
     );
 }

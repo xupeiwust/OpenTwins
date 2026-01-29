@@ -1,0 +1,431 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Space+Grotesk:wght@700&family=Syne:wght@800&family=Lexend:wght@700&display=swap');
+
+/* =========================================
+   1. Global Variables & Reset
+   ========================================= */
+:root {
+  --hero-padding: 4rem 2rem;
+  --navbar-height: 70px;
+  --max-width: 1300px;
+  /* Colores para el título */
+  --color-text-open: var(--ifm-color-content);
+  --color-text-twins: var(--ifm-color-primary);
+}
+
+/* =========================================
+   2. Custom Navbar Styles (IMPORTANTE)
+   ========================================= */
+.navbar-custom {
+  height: var(--navbar-height);
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--ifm-navbar-background-color);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.navbar-container {
+  width: 100%;
+  max-width: var(--max-width);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ifm-color-content);
+  transition: opacity 0.2s ease;
+}
+
+.navbar-brand:hover {
+  text-decoration: none;
+  opacity: 0.8;
+  color: var(--ifm-color-primary);
+}
+
+.brand-logo {
+  height: 38px;
+  width: 38px;
+}
+
+.brand-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 200;
+  font-size: 1.1rem;
+  letter-spacing: -0.5px;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 200;
+  font-size: 0.9rem;
+  color: var(--ifm-color-content);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  text-decoration: none;
+  color: var(--ifm-color-primary);
+}
+
+.nav-icon {
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.nav-icon:hover {
+  opacity: 1;
+}
+
+/* Ocultar enlaces en móvil */
+@media (max-width: 768px) {
+  .navbar-links {
+    gap: 1rem;
+  }
+  .hide-mobile {
+    display: none;
+  }
+}
+
+/* =========================================
+   3. Hero Section & Layout
+   ========================================= */
+.hero-section {
+  width: 100%;
+  min-height: calc(100vh - var(--navbar-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--hero-padding);
+  background: radial-gradient(circle at 15% 50%, var(--ifm-color-emphasis-100) 0%, transparent 25%),
+              radial-gradient(circle at 85% 30%, var(--ifm-color-emphasis-100) 0%, transparent 25%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-container {
+  max-width: var(--max-width);
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr; 
+  gap: 4rem;
+  align-items: center;
+}
+
+/* =========================================
+   4. Left Column: Typography & Actions
+   ========================================= */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.brand-title-huge {
+  font-size: clamp(2.5rem, 12vw, 5rem);
+  font-family: 'Lexend', sans-serif;
+  font-weight: 800;
+  line-height: 1.2; /* Un poco más de altura de línea por si acaso */
+  letter-spacing: -0.02em; /* Espaciado negativo para que se vean bien compactos */
+  margin-bottom: 1.5rem;
+  
+  /* AQUÍ ESTÁ EL CAMBIO */
+  display: flex;          /* Usamos Flexbox */
+  flex-direction: row;    /* Fila (horizontal) en lugar de columna */
+  flex-wrap: wrap;        /* Permite que baje de línea solo si la pantalla es minúscula */
+  align-items: baseline;  /* Alinea la base del texto perfectamente */
+  gap: 0;                 /* Cero espacio entre las palabras */
+}
+
+.text-open {
+  color: var(--color-text-open);
+}
+
+.text-twins {
+  color: var(--color-text-twins);
+  background: -webkit-linear-gradient(45deg, var(--ifm-color-primary) 30%, var(--ifm-color-primary-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+  font-size: 1.15rem;
+  font-family: 'Outfit', sans-serif;
+  color: var(--ifm-color-emphasis-700);
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  max-width: 90%;
+  border-left: 3px solid var(--ifm-color-primary);
+  padding-left: 1.5rem;
+}
+
+.cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+.button-disabled {
+  opacity: 0.6;
+  cursor: not-allowed !important;
+  background-color: var(--ifm-color-emphasis-100);
+  border-color: var(--ifm-color-emphasis-300);
+  color: var(--ifm-color-emphasis-500);
+}
+
+.partners-section {
+  margin-top: auto;
+}
+
+.partners-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--ifm-color-emphasis-400);
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.partners-logos {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  opacity: 0.9;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+}
+
+.partners-logos:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.partner-logo {
+  height: 45px;
+  width: auto;
+}
+
+/* =========================================
+   5. Right Column: Carousel Frame
+   ========================================= */
+.hero-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+.carousel-frame {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--ifm-background-surface-color);
+  border-radius: 12px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  box-shadow: 0 20px 50px -10px rgba(0,0,0,0.15), 0 0 0 1px rgba(255,255,255,0.1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-header {
+  height: 32px;
+  background: var(--ifm-color-emphasis-100);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 6px;
+}
+
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot.red { background-color: #ff5f56; }
+.dot.yellow { background-color: #ffbd2e; }
+.dot.green { background-color: #27c93f; }
+
+.carousel-content {
+  flex: 1;
+  position: relative;
+  background-color: var(--ifm-color-emphasis-200);
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+/* =========================================
+   6. Responsive Adjustments
+   ========================================= */
+
+@media (max-width: 996px) {
+    .hero-container {
+        grid-template-columns: 1fr; /* Una sola columna */
+        gap: 3rem;
+        text-align: center; /* Centramos el texto base */
+    }
+
+    .hero-left {
+        align-items: center; /* Centra el contenido de la columna izquierda */
+    }
+
+    .hero-right {
+        order: 2; /* El carrusel se va abajo (después del hero-left) */
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .brand-title-huge {
+        font-size: 4rem;
+        justify-content: center; /* Centra el título "Open Twins" */
+    }
+
+    .hero-description {
+        border-left: none;
+        padding-left: 0;
+        margin: 0 auto 2.5rem auto;
+    }
+
+    /* BOTONES: Uno debajo del otro y centrados */
+    .cta-group {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px; /* Ancho máximo para que no ocupen toda la pantalla */
+        margin-left: auto;
+        margin-right: auto;
+        gap: 0.8rem;
+    }
+
+    .cta-group .button {
+        width: 100%; /* Que todos midan lo mismo */
+        margin: 0;
+    }
+
+    /* PARTNERS: Centrados */
+    .partners-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .partners-logos {
+        justify-content: center;
+        flex-wrap: nowrap; /* Mantiene los logos en la misma fila */
+    }
+}
+
+@media (max-width: 500px) {
+    .brand-title-huge {
+        font-size: 3rem;
+    }
+    
+    .partner-logo {
+        height: 40px; /* Logos un poco más pequeños en móviles muy estrechos */
+    }
+
+    .partners-logos {
+        gap: 1rem;
+    }
+}
+
+/* Estilo adicional para los links de los logos */
+.partner-link {
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.partner-link:hover {
+    transform: translateY(-3px);
+}
+
+/* --- Ajustes específicos para el modo CLARO --- */
+[data-theme='light'] .carousel-frame {
+    background: #f8f9fa; /* Un gris muy sutil para que el blanco de la captura resalte */
+    border: 1px solid #d8d8d8;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme='light'] .carousel-header {
+    background: #eeeeee; /* Cabecera un tono más oscura para diferenciarla */
+    border-bottom: 1px solid #e0e0e0;
+}
+
+[data-theme='light'] .carousel-content {
+    background-color: #ffffff;
+}
+
+/* --- Mantenemos el modo OSCURO intacto (estilos por defecto de Docusaurus) --- */
+[data-theme='dark'] .carousel-frame {
+    border: 1px solid var(--ifm-color-emphasis-200);
+    background: var(--ifm-background-surface-color);
+}
+
+/* --- Ajustes de visibilidad para modo CLARO --- */
+[data-theme='light'] .partners-label {
+    color: #444444; /* Un gris oscuro sólido, no traslúcido */
+    font-weight: 800; /* Un poco más de peso para que se lea bien */
+}
+
+[data-theme='light'] .hero-description {
+    color: #222222; /* Texto descriptivo más legible */
+}
+
+/* Botón GitHub (Secondary) en modo claro */
+[data-theme='light'] .button--secondary {
+    background-color: #c5c5c5;
+    border-color: #d0d0d0;
+    color: #222222;
+}
+
+[data-theme='light'] .button--secondary:hover {
+    background-color: #e2e2e2;
+}
+
+/* Botón Demos (Disabled/Outline) en modo claro */
+[data-theme='light'] .button-disabled {
+    background-color: #f9f9f9;
+    border-color: #e0e0e0;
+    color: #999999; /* Gris suave pero legible para indicar desactivado */
+    opacity: 1; /* Quitamos la opacidad para controlar el color nosotros */
+}
+
+/* Ajuste de los logos de partners para que no se vean tan transparentes */
+[data-theme='light'] .partners-logos {
+    opacity: 1;
+    filter: grayscale(100%) contrast(1.2); /* Un toque de contraste extra */
+}
+
+[data-theme='light'] .partners-logos:hover {
+    filter: grayscale(0%) contrast(1);
+}
